@@ -25,7 +25,17 @@ namespace WpfApp1
         {
             InitializeComponent();
 
-            var message = $"CurrentCulture={Thread.CurrentThread.CurrentCulture.NumberFormat.CurrencyNegativePattern}.  CurrentUICulture={Thread.CurrentThread.CurrentUICulture.NumberFormat.CurrencyNegativePattern}.  Test = {-10:C0}";
+            var string1 = (-10).ToString("C2", new System.Globalization.CultureInfo("en-US"));
+            var string2 = (-10).ToString("C2", System.Windows.Markup.XmlLanguage.GetLanguage("en-US").GetEquivalentCulture());
+
+            var sb = new StringBuilder();
+            sb.AppendLine($"CurrentCulture ={ Thread.CurrentThread.CurrentCulture.NumberFormat.CurrencyNegativePattern}.");
+            sb.AppendLine($"CurrentUICulture={Thread.CurrentThread.CurrentUICulture.NumberFormat.CurrencyNegativePattern}.");
+            sb.AppendLine($"\"{{-10:C0}}\" = {-10:C0}");
+            sb.AppendLine($"(-10).ToString(\"C2\", new System.Globalization.CultureInfo(\"en-US\")) = {string1}");
+            sb.AppendLine($"(-10).ToString(\"C2\", System.Windows.Markup.XmlLanguage.GetLanguage(\"en-US\").GetEquivalentCulture()) = {string2}");
+
+            var message = sb.ToString();
             this.DataContext = new ViewModel() { Value = -10, Message = message };
         }
 
