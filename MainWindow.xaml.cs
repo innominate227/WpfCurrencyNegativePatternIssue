@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,8 +29,12 @@ namespace WpfApp1
             var string2 = (-10).ToString("C2", System.Windows.Markup.XmlLanguage.GetLanguage("en-US").GetEquivalentCulture());
 
             var sb = new StringBuilder();
-            sb.AppendLine($"CurrentCulture ={ Thread.CurrentThread.CurrentCulture.NumberFormat.CurrencyNegativePattern}.");
-            sb.AppendLine($"CurrentUICulture={Thread.CurrentThread.CurrentUICulture.NumberFormat.CurrencyNegativePattern}.");
+
+            
+
+            sb.AppendLine($"Environment.Version = {Environment.Version}.");
+            sb.AppendLine($"CurrentCulture = {Thread.CurrentThread.CurrentCulture.NumberFormat.CurrencyNegativePattern}.");
+            sb.AppendLine($"CurrentUICulture = {Thread.CurrentThread.CurrentUICulture.NumberFormat.CurrencyNegativePattern}.");
             sb.AppendLine($"\"{{-10:C0}}\" = {-10:C0}");
             sb.AppendLine($"(-10).ToString(\"C2\", new System.Globalization.CultureInfo(\"en-US\")) = {string1}");
             sb.AppendLine($"(-10).ToString(\"C2\", System.Windows.Markup.XmlLanguage.GetLanguage(\"en-US\").GetEquivalentCulture()) = {string2}");
